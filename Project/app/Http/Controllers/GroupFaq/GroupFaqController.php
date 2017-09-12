@@ -4,8 +4,9 @@ namespace App\Http\Controllers\GroupFaq;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class GroupFaqController extends Controller
+class GroupFaqController extends ApiController
 {
     /**
      * Display a listing of the resource.

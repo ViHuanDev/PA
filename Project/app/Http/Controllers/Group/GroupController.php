@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Group;
 
+use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
+use App\Http\Requests\Group\CreateGroupRequest;
+use App\Http\Requests\Group\UpdateGroupRequest;
 
-class GroupController extends Controller
+class GroupController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::all();
+
+        return $this->showAll($groups);
     }
 
     /**
@@ -33,9 +39,15 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateGroupRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['name'] = $request->name;
+        $data['note'] = $request->note;
+
+        $group = Group::create($data);
+
+        return $this->showOne($group, 201);
     }
 
     /**
@@ -44,9 +56,9 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Group $group)
     {
-        //
+        return $this->showOne($group);
     }
 
     /**
@@ -67,9 +79,14 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGroupRequest $request,Group $group)
     {
-        //
+        $group->name = $request->name;
+        $group->note = $request->note;
+
+        $group->save();
+
+        return $this->showOne($group, 200);
     }
 
     /**
@@ -78,8 +95,10 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return $this->showOne($group);
     }
 }

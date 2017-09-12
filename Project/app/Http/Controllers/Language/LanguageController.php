@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Language;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class LanguageController extends Controller
+class LanguageController extends ApiController
 {
     /**
      * Display a listing of the resource.

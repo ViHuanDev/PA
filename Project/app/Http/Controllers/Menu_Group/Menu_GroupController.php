@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Menu_Group;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class Menu_GroupController extends Controller
+class Menu_GroupController extends ApiController
 {
     /**
      * Display a listing of the resource.

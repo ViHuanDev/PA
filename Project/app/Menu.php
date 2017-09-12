@@ -13,6 +13,12 @@ class Menu extends Model
 
     protected $table = 'menus';
 	protected $dates = ['deleted_at'];
+	protected $fillable = [
+		'name',
+		'parent_id',
+		'nameroute',
+		'order',
+	];
     
     public function group(){
     	return $this->belongsToMany(Group::class)->withpivot('value','id');

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Checklist_Faq;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class Checklist_FaqController extends Controller
+class Checklist_FaqController extends ApiController
 {
     /**
      * Display a listing of the resource.

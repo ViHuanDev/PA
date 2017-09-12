@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Log;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class Log_UserController extends Controller
+class Log_UserController extends ApiController
 {
     /**
      * Display a listing of the resource.

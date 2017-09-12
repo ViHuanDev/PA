@@ -14,6 +14,7 @@ class Group extends Model
 
 	Protected $table = 'groups';
 	protected $dates = ['deleted_at'];
+	protected $fillable = ['name','note'];
 	
 	public function user(){
 		return $this->hasMany(User::class);

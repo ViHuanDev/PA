@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Menu;
 
+use App\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Auth\validate;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
+use App\Http\Requests\Menu\CreateMenuRequest;
+use App\Http\Requests\Menu\UpdateMenuRequest;
 
-class MenuController extends Controller
+class MenuController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +19,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::all();
+
+        return $this->showAll($menus);
     }
 
     /**
@@ -22,9 +29,9 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
     }
 
     /**
@@ -33,9 +40,17 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMenuRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['name'] = $request->name;
+        $data['parent_id'] = $request->parent_id;
+        $data['nameroute'] = $request->nameroute;
+        $data['order'] = $request->order;
+
+        $menu = Menu::create($data);
+
+        return $this->showOne($menu, 201);
     }
 
     /**
@@ -44,9 +59,9 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Menu $menu)
     {
-        //
+        return $this->showOne($menu);
     }
 
     /**
@@ -57,7 +72,7 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -67,9 +82,17 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMenuRequest $request, Menu $menu)
     {
-        //
+        
+        $menu->name = $request->name;
+        $menu->parent_id = $request->parent_id;
+        $menu->nameroute = $request->nameroute;
+        $menu->order = $request->order;
+
+        $menu->save();
+
+        return $this->showOne($menu, 200);
     }
 
     /**
@@ -78,8 +101,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+
+        return $this->showOne($menu);
     }
 }

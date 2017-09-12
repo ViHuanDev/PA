@@ -12,7 +12,17 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+/**
+ * Menus Duy-11/9
+ */
+Route::resource('menus','Menu\MenuController',['except' => ['create','edit']]);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+/**
+ * Groups Duy-11/9
+ */
+Route::resource('groups','Group\GroupController',['except' => ['create','edit']]);
+
+/**
+ * Groups Duy-11/9
+ */
+Route::resource('users','User\UserController',['except' => ['create','edit']]);

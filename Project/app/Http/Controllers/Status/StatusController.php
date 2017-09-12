@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Status;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class StatusController extends Controller
+class StatusController extends ApiController
 {
     /**
      * Display a listing of the resource.

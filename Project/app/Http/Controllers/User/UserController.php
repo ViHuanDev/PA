@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
+use App\Http\Requests\User\CreateUserRequest;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        return $this->showAll($users);
     }
 
     /**
@@ -33,9 +38,22 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $menu->fullname = $request->fullname;
+        $menu->email = $request->email;
+        $menu->password = $request->password;
+        $menu->phone = $request->phone;
+        $menu->extendinfo = $request->extendinfo;
+        $menu->position = $request->position;
+        $menu->organization_id = $request->organization_id;
+        $menu->group_id = $request->group_id;
+        $menu->status = $request->status;
+        $menu->address = $request->address;
+
+        $menu->save();
+
+        return $this->showOne($menu, 200);
     }
 
     /**
@@ -44,9 +62,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return $this->showOne($user);
     }
 
     /**
@@ -69,7 +87,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -78,8 +96,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return $this->showOne($user);
     }
 }

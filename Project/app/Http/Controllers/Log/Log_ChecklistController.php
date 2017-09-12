@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Log;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class Log_ChecklistController extends Controller
+class Log_ChecklistController extends ApiController
 {
     /**
      * Display a listing of the resource.

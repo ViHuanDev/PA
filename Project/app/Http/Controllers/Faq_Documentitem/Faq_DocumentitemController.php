@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Faq_Documentitem;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class Faq_DocumentitemController extends Controller
+class Faq_DocumentitemController extends ApiController
 {
     /**
      * Display a listing of the resource.

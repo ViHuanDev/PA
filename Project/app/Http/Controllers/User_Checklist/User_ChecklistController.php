@@ -4,8 +4,9 @@ namespace App\Http\Controllers\User_Checklist;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class User_ChecklistController extends Controller
+class User_ChecklistController extends ApiController
 {
     /**
      * Display a listing of the resource.
