@@ -21,6 +21,7 @@ class User extends Model
 
     protected $dates = ['deleted_at'];
     protected $table = 'users';
+    protected $guarded = array();
     
     public function groupuser(){
     	return $this->belongsTo(Group::class);

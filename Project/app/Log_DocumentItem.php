@@ -10,6 +10,8 @@ class Log_DocumentItem extends Model
 {
 	use SoftDeletes;
 	protected $dates = ['deleted_at'];
+    protected $guarded = array();
+	
 	
 	public function documentitem(){
 		return $this->belongsTo(DocumentItem::class);

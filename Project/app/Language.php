@@ -17,6 +17,8 @@ class Language extends Model
 
 	protected $table = 'languages';
 	protected $dates = ['deleted_at'];
+    protected $guarded = array();
+	
 
 	public function languagemeta(){
 		return $this->hasMany(LanguageMeta::class);

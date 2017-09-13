@@ -14,6 +14,8 @@ class Organization extends Model
 
 	protected $dates = ['deleted_at'];
 	protected $table = 'organizations';
+    protected $guarded = array();
+	
 
 	public function user(){
 		return $this->hasMany(User::class);

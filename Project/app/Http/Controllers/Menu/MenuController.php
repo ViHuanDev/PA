@@ -50,7 +50,7 @@ class MenuController extends ApiController
 
         $menu = Menu::create($data);
 
-        return $this->showOne($menu, 201);
+        return $this->showOne($menu);
     }
 
     /**

@@ -33,6 +33,6 @@ class CreateLogFaqsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log__faqs');
+        Schema::dropIfExists('log_faqs');
     }
 }

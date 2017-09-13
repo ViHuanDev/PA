@@ -10,6 +10,8 @@ class Log_Checklist extends Model
 {
     use SoftDeletes;
 	protected $dates = ['deleted_at'];
+    protected $guarded = array();
+	
     
     public function checklist(){
     	return $this->belongsTo(CheckList::class);

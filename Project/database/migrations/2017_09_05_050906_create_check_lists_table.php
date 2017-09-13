@@ -33,6 +33,6 @@ class CreateCheckListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('check_lists');
+        Schema::dropIfExists('checklists');
     }
 }

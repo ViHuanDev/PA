@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Language;
 
-use App\Language;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Language\CreateLanguageRequest;
-use App\Http\Requests\Language\UpdateLanguageRequest;
 
-class LanguageController extends ApiController
+class LanguageSwitcherController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,8 @@ class LanguageController extends ApiController
      */
     public function index()
     {
-        $languages = Language::all();
-
-        return $this->showAll($languages);
+        $language = DB::table('languages')->get();
+        return response()->json($language);
     }
 
     /**
@@ -39,15 +35,9 @@ class LanguageController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateLanguageRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $data['code'] = $request->code;
-        $data['name'] = $request->name;
-
-        $language = Language::create($data);
-
-        return $this->showOne($language);
+        //
     }
 
     /**
@@ -56,9 +46,9 @@ class LanguageController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Language $language)
+    public function show($id)
     {
-        return $this->showOne($language);
+        //
     }
 
     /**
@@ -79,14 +69,9 @@ class LanguageController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLanguageRequest $request, Language $language)
+    public function update(Request $request, $id)
     {
-        $language->name = $request->name;
-        $language->code = $request->code;
-
-        $language->save();
-
-        return $this->showOne($language);
+        //
     }
 
     /**
@@ -95,10 +80,8 @@ class LanguageController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Language $language)
+    public function destroy($id)
     {
-        $language->delete();
-
-        return $this->showOne($language);
+        //
     }
 }

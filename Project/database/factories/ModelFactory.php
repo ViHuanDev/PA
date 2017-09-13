@@ -54,6 +54,7 @@ $factory->define(Organization::class, function (Faker\Generator $faker){
 		'address' => $faker->city,
 		'phone' => $faker->tollFreePhoneNumber,
 		'location' => $faker->streetAddress,
+		'representative' => $faker->userName,
 	];
 });
 $factory->define(User::class, function (Faker\Generator $faker) {
@@ -65,7 +66,6 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'password' => $password ?: $password = bcrypt('123456'),
         'status' => $status = $faker->randomElement([User::PENDING, USER::APPROVAL,User::REFUSE, USER::BAN]),
        	'phone' => $faker->tollFreePhoneNumber,
-       	'address' => $faker->address,
        	'extendinfo' => $faker->realText($maxNbChars = 200, $indexSize = 2),
        	'position' => $faker->realText($maxNbChars = 200, $indexSize = 1),
         'group_id' => Group::all()->random()->id,

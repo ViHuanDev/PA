@@ -16,6 +16,8 @@ class Faq extends Model
 
 	protected $dates = ['deleted_at'];
 	protected $table = 'faqs';
+    protected $guarded = array();
+	
 
 	public function log_faq(){
 		return $this->hasMany(Log_Faq::class);

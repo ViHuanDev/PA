@@ -13,6 +13,8 @@ class Document extends Model
 
 	protected $dates = ['deleted_at'];
     protected $table = 'documents';
+    protected $guarded = array();
+    
 
     public function documentitems(){
     	return $this->hasMany(DocumentItem::class);

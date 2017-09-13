@@ -35,6 +35,6 @@ class CreateMenuGroupTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_group');
+        Schema::dropIfExists('group_menu');
     }
 }

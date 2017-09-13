@@ -22,11 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('extendinfo')->nullable();
             $table->string('position')->nullable();
-            $table->string('avatar')->nullable();
             $table->integer('organization_id')->unsigned();
             $table->integer('group_id')->unsigned();
             $table->string('status')->default(User::PENDING);
-            $table->string('address');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();//deleted_at

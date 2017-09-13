@@ -18,6 +18,7 @@ class LanguageMeta extends Model
     use SoftDeletes;
 	protected $dates = ['deleted_at'];
     protected $table = 'languagemetas';
+    protected $guarded = array();
     
     public function languages(){
     	return $this->belongsTo(Language::class);

@@ -21,6 +21,8 @@ class CheckList extends Model
 
 	protected $dates = ['deleted_at'];
 	protected $table = 'checklists';
+    protected $guarded = array();
+	
 
 	public function log_checklist(){
 		return $this->hasMany(Log_Checklist::class);

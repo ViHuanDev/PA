@@ -15,6 +15,8 @@ class DocumentItem extends Model
 
 	protected $table = 'documentitems';
 	protected $dates = ['deleted_at'];
+    protected $guarded = array();
+	
 
 	public function log_documentitem(){
 		return $this->hasMany(Log_DocumentItem::class);

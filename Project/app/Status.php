@@ -17,6 +17,7 @@ class Status extends Model
     const COMMENT = 'comment';
 
 	protected $dates = ['deleted_at'];
+    protected $guarded = array();
 	protected $table = 'statuses';
     
 }

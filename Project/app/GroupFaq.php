@@ -13,6 +13,8 @@ class GroupFaq extends Model
 
 	protected $table = 'groupfaqs';
 	protected $dates = ['deleted_at'];
+    protected $guarded = array();
+	
 	
 	public function faq(){
 		return $this->hasMany(Faq::class);

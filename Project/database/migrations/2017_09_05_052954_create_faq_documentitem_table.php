@@ -32,7 +32,7 @@ class CreateFaqDocumentitemTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq_documentitem');
+        Schema::dropIfExists('documentitem_faq');
         //
     }
 }

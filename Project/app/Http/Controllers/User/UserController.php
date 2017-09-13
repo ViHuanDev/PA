@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 
 class UserController extends ApiController
 {
@@ -40,20 +42,20 @@ class UserController extends ApiController
      */
     public function store(CreateUserRequest $request)
     {
-        $menu->fullname = $request->fullname;
-        $menu->email = $request->email;
-        $menu->password = $request->password;
-        $menu->phone = $request->phone;
-        $menu->extendinfo = $request->extendinfo;
-        $menu->position = $request->position;
-        $menu->organization_id = $request->organization_id;
-        $menu->group_id = $request->group_id;
-        $menu->status = $request->status;
-        $menu->address = $request->address;
+        $data = $request->all();
+        $data['fullname'] = $request->fullname;
+        $data['email'] = $request->email;
+        $data['password'] = Hash::make($request->password);
+        $data['phone'] = $request->phone;
+        $data['extendinfo'] = $request->extendinfo;
+        $data['position'] = $request->position;
+        $data['organization_id'] = $request->organization_id;
+        $data['group_id'] = $request->group_id;
+        $data['status'] = $request->status;
 
-        $menu->save();
+        $user = User::create($data);
 
-        return $this->showOne($menu, 200);
+        return $this->showOne($user, 200);
     }
 
     /**
@@ -85,9 +87,20 @@ class UserController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        
+       $user->fullname = $request->fullname;
+       $user->email = $request->email;
+       $user->phone = $request->phone;
+       $user->extendinfo = $request->extendinfo;
+       $user->position = $request->position;
+       $user->organization_id = $request->organization_id;
+       $user->group_id = $request->group_id;
+       $user->status = $request->status;
+
+       $user->save();
+
+       return $this->showOne($user, 200);
     }
 
     /**

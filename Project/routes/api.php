@@ -26,3 +26,18 @@ Route::resource('groups','Group\GroupController',['except' => ['create','edit']]
  * Groups Duy-11/9
  */
 Route::resource('users','User\UserController',['except' => ['create','edit']]);
+
+/**
+ * Organization Duy-11/9
+ */
+Route::resource('organizations','Organization\OrganizationController',['except' => ['create','edit']]);
+
+/**
+ * Organization Duy-11/9
+ */
+Route::resource('languages','Language\LanguageController',['except' => ['create','edit']]);
+
+/**
+ * Language Switcher Duy-11/9
+ */
+Route::resource('language.switcher','Language\LanguageSwitcherController',['only' => ['index','edit']]);
