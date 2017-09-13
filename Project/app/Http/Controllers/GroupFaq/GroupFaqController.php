@@ -5,7 +5,9 @@ namespace App\Http\Controllers\GroupFaq;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
-
+use App\GroupFaq;
+use App\Http\Requests\GroupFaq\CreateGroupFaqRequest;
+use App\Http\Requests\GroupFaq\UpdateGroupFaqRequest;
 class GroupFaqController extends ApiController
 {
     /**
@@ -15,7 +17,7 @@ class GroupFaqController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->showAll(GroupFaq::all());
     }
 
     /**
@@ -34,9 +36,10 @@ class GroupFaqController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateGroupFaqRequest $request)
     {
-        //
+        $groupfaq=GroupFaq::create($request->all());
+        return $this->showOne($groupfaq);
     }
 
     /**
@@ -45,9 +48,9 @@ class GroupFaqController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(GroupFaq $groupfaq)
     {
-        //
+        return $this->showOne($groupfaq);
     }
 
     /**
@@ -68,9 +71,10 @@ class GroupFaqController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGroupFaqRequest $request, GroupFaq $groupfaq)
     {
-        //
+        $groupfaq->update($request->all());
+        return $this->showOne($groupfaq);
     }
 
     /**
@@ -79,8 +83,9 @@ class GroupFaqController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(GroupFaq $groupfaq)
     {
-        //
+        $groupfaq->delete();
+        $this->showOne($groupfaq);
     }
 }

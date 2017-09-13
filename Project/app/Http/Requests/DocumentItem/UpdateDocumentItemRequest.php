@@ -25,9 +25,9 @@ class UpdateDocumentItemRequest extends FormRequest
     {
         return [
             'document_index'=>'max:255',
-            'parent_id'=>'number|max:10',
+            'parent_id'=>'number',
             'content'=>'required|max:1000',
-            'document_id'=>'required|number|max:10',
+            'document_id'=>'required|numeric|max:10',
             'status'=>'required|max:255'  
         ];
     }

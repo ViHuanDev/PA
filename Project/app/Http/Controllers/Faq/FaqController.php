@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Faq;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
-
+use App\Faq;
+use App\Http\Requests\Faq\CreateFaqRequest;
+use App\Http\Requests\Faq\UpdateFaqRequest;
 class FaqController extends ApiController
 {
     /**
@@ -15,7 +17,7 @@ class FaqController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->showAll(Faq::all());
     }
 
     /**
@@ -34,9 +36,10 @@ class FaqController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateFaqRequest $request)
     {
-        //
+        $faq=Faq::create($request->all());
+        return $this->showOne($faq);
     }
 
     /**
@@ -45,9 +48,9 @@ class FaqController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Faq $faq)
     {
-        //
+        return $this->showOne($faq);
     }
 
     /**
@@ -68,9 +71,10 @@ class FaqController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateFaqRequest $request, Faq $faq)
     {
-        //
+        $faq->update($request->all());
+        return $this->showOne($faq);
     }
 
     /**
@@ -79,8 +83,9 @@ class FaqController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Faq $faq)
     {
-        //
+        $faq->delete();
+        return $this->showOne($faq);
     }
 }
