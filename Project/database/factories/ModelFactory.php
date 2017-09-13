@@ -12,6 +12,7 @@ use App\GroupFaq;
 use App\Language;
 use App\CheckList;
 use App\DocumentItem;
+use App\LanguageMeta;
 use App\Organization;
 use Illuminate\Support\Facades\DB;
 

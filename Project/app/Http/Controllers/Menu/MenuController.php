@@ -12,6 +12,9 @@ use App\Http\Requests\Menu\UpdateMenuRequest;
 
 class MenuController extends ApiController
 {
+    public function __construct(){
+        $this->middleware('LanguageSwitcher');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +22,10 @@ class MenuController extends ApiController
      */
     public function index()
     {
-        $menus = Menu::all();
-
+        // $menus = Menu::all();
+        $menu = new Menu;
+        return $language = $this->check_langugane($menu);
+        $menus = DB::table('menus')->whereIn('id',$language)->get();
         return $this->showAll($menus);
     }
 

@@ -17,6 +17,7 @@ class CreateLanguageMetasTable extends Migration
             $table->increments('id');
             $table->integer('content_id')->unsigned();
             $table->integer('language_id')->unsigned();
+            $table->integer('indexcontent_id')->unsigned();
             $table->string('reference');
             $table->timestamps();
             $table->softDeletes();
