@@ -42,15 +42,17 @@ class MenuController extends ApiController
      */
     public function store(CreateMenuRequest $request)
     {
-        $data = $request->all();
-        $data['name'] = $request->name;
-        $data['parent_id'] = $request->parent_id;
-        $data['nameroute'] = $request->nameroute;
-        $data['order'] = $request->order;
+        // $data = $request->all();
+        // $data['name'] = $request->name;
+        // $data['parent_id'] = $request->parent_id;
+        // $data['nameroute'] = $request->nameroute;
+        // $data['order'] = $request->order;
 
-        $menu = Menu::create($data);
+        // $menu = Menu::create($data);
 
-        return $this->showOne($menu);
+        // return $this->showOne($menu);
+        $menu = Menu::create($request->all());
+        return $this->showOne($menu, 201);
     }
 
     /**
@@ -84,14 +86,11 @@ class MenuController extends ApiController
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
-        
         $menu->name = $request->name;
         $menu->parent_id = $request->parent_id;
         $menu->nameroute = $request->nameroute;
         $menu->order = $request->order;
-
         $menu->save();
-
         return $this->showOne($menu, 200);
     }
 

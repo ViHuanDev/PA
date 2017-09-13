@@ -21,9 +21,16 @@ Route::resource('menus','Menu\MenuController',['except' => ['create','edit']]);
  * Groups Duy-11/9
  */
 Route::resource('groups','Group\GroupController',['except' => ['create','edit']]);
-
 /**
- * Groups Duy-11/9
+ * Document Tuan Anh-12/9
+ */
+Route::resource('documents', 'Document\DocumentController',['except' => ['create','edit']]);
+/**
+ * Document Tuan Anh-12/9
+ */
+Route::resource('documentitems', 'DocumentItem\DocumentItemController',['except' => ['create','edit']]);
+/**
+ * Users Duy-11/9
  */
 Route::resource('users','User\UserController',['except' => ['create','edit']]);
 

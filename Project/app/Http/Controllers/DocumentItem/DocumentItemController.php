@@ -5,7 +5,9 @@ namespace App\Http\Controllers\DocumentItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
-
+use App\DocumentItem;
+use App\Http\Requests\DocumentItem\CreateDocumentItemRequest;
+use App\Http\Requests\DocumentItem\UpdateDocumentItemRequest;
 class DocumentItemController extends ApiController
 {
     /**
@@ -15,7 +17,8 @@ class DocumentItemController extends ApiController
      */
     public function index()
     {
-        //
+        $DocumentItem=DocumentItem::all();
+        return $this->showAll($DocumentItem);
     }
 
     /**
@@ -34,9 +37,10 @@ class DocumentItemController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateDocumentItemRequest $request)
     {
-        //
+        $documentitem=DocumentItem::create($request->all());
+        return $this->showOne($documentitem);
     }
 
     /**
@@ -45,9 +49,9 @@ class DocumentItemController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DocumentItem $documentitem)
     {
-        //
+        return $this->showOne($documentitem);
     }
 
     /**
@@ -68,9 +72,10 @@ class DocumentItemController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDocumentItemRequest $request, DocumentItem $documentitem)
     {
-        //
+        $documentitem->update($request->all());
+        return $this->showOne($documentitem);
     }
 
     /**
@@ -79,8 +84,9 @@ class DocumentItemController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DocumentItem $documentitem)
     {
-        //
+        $documentitem->update($request->all());
+        return $this->showOne($documentitem);
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
-
+use App\Document;
+use App\Http\Requests\Document\CreateDocumentRequest;
+use App\Http\Requests\Document\UpdateDocumentRequest;
 class DocumentController extends ApiController
 {
     /**
@@ -15,7 +17,8 @@ class DocumentController extends ApiController
      */
     public function index()
     {
-        //
+        $document=Document::all();
+        return $this->showAll($document);
     }
 
     /**
@@ -34,10 +37,11 @@ class DocumentController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateDocument $request)
     {
-        //
-    }
+        $document=Document::create($request->all());
+        return $this->showOne($document);
+    }   
 
     /**
      * Display the specified resource.
@@ -45,9 +49,9 @@ class DocumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Document $document)
     {
-        //
+        return $this->showOne($document);
     }
 
     /**
@@ -68,9 +72,10 @@ class DocumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDocumentRequest $request, Document $document)
     {
-        //
+         $document->update($request->all());
+         return $document;
     }
 
     /**
@@ -79,8 +84,9 @@ class DocumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Document $document)
     {
-        //
+         $document->delete();
+         return $this->showOne($document);
     }
 }
