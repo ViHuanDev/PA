@@ -26,9 +26,29 @@ Route::resource('groups','Group\GroupController',['except' => ['create','edit']]
  */
 Route::resource('documents', 'Document\DocumentController',['except' => ['create','edit']]);
 /**
- * Document Tuan Anh-12/9
+ * DocumentItem Tuan Anh-12/9
  */
 Route::resource('documentitems', 'DocumentItem\DocumentItemController',['except' => ['create','edit']]);
+/**
+ * Faq Tuan Anh-12/9
+ */
+Route::resource('faqs', 'Faq\FaqController',['except' => ['create','edit']]);\
+/**
+ * GroupFaq Tuan Anh-12/9
+ */
+Route::resource('groupfaqs', 'GroupFaq\GroupFaqController',['except' => ['create','edit']]);
+/**
+ * CheckList Tuan Anh-12/9
+ */
+Route::resource('checklists', 'CheckList\CheckListController',['except' => ['create','edit']]);
+/**
+ * Comment Tuan Anh-12/9
+ */
+Route::resource('comments', 'Comment\CommentController',['except' => ['create','edit']]);
+/**
+ * Comment Tuan Anh-12/9
+ */
+//Route::resource('statuses', 'Status\StatusController',['except' => ['create','edit']]);
 /**
  * Users Duy-11/9
  */

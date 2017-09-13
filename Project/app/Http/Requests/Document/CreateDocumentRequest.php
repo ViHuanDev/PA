@@ -28,7 +28,7 @@ class CreateDocumentRequest extends FormRequest
             'location'=>'min:2|max:255',
             'filepath'=>'min:2|max:255|required',
             'version'=>'max:255',
-            'document_id'=>'number',
+            'document_id'=>'numeric',
             'status'=>'required|max:255',
         ];
     }
