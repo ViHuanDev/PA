@@ -56,6 +56,7 @@ $factory->define(Organization::class, function (Faker\Generator $faker){
 		'phone' => $faker->tollFreePhoneNumber,
 		'location' => $faker->streetAddress,
 		'representative' => $faker->userName,
+		'typeorganization' => $faker->userName,
 	];
 });
 $factory->define(User::class, function (Faker\Generator $faker) {

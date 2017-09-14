@@ -71,3 +71,9 @@ Route::resource('languages','Language\LanguageController',['except' => ['create'
  * Language Switcher Duy-13/9
  */
 Route::resource('language/switcher','Language\LanguageSwitcherController',['only' => ['store','index']]);
+
+/**
+ * Language Switcher Duy-13/9
+ */
+Route::resource('menu/group','Menu_Group\Menu_GroupController',['only' => ['store','index']]);
+Route::get('menu/group/{user}','Menu_Group\Menu_GroupController@create');
