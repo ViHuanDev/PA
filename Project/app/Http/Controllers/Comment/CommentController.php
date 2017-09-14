@@ -17,7 +17,7 @@ class CommentController extends ApiController
      */
     public function index()
     {
-        return $this->showAll(Comment::all());
+        return response()->json(Comment::paginate(1));
     }
 
     /**

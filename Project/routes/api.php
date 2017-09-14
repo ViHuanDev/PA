@@ -24,7 +24,7 @@ Route::resource('groups','Group\GroupController',['except' => ['create','edit']]
 /**
  * Document Tuan Anh-12/9
  */
-Route::resource('documents', 'Document\DocumentController',['except' => ['create','edit']]);
+Route::middleware('jwt.auth')->resource('documents','Document\DocumentController',['except' => ['create','edit']]);
 /**
  * DocumentItem Tuan Anh-12/9
  */
@@ -53,7 +53,7 @@ Route::resource('comments', 'Comment\CommentController',['except' => ['create','
  * Users Duy-11/9
  */
 Route::resource('users','User\UserController',['except' => ['create','edit']]);
-
+Route::post('users/signin','User\UserController@signIn');
 /**
  * Organization Duy-11/9
  */

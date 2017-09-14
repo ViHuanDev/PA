@@ -17,6 +17,10 @@ class UserController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
+    public function signIn(Request $req)
+    {
+        dd($req->all());
+    }
     public function index()
     {
         $users = User::all();
