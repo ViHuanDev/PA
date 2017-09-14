@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Menu;
 use App\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Auth\validate;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\Menu\CreateMenuRequest;
@@ -12,6 +13,9 @@ use App\Http\Requests\Menu\UpdateMenuRequest;
 
 class MenuController extends ApiController
 {
+    // public function __construct(){
+    //     $this->middleware('LanguageSwitcher');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +23,10 @@ class MenuController extends ApiController
      */
     public function index()
     {
-        $menus = Menu::all();
-
+        // $menus = Menu::all();
+        $menu = new Menu;
+        $language = $this->check_langugane($menu);
+        $menus = Menu::whereIn('id',$language)->get();
         return $this->showAll($menus);
     }
 

@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -123,6 +123,51 @@ return [
     'log' => env('APP_LOG', 'single'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Use fallback per property
+    |--------------------------------------------------------------------------
+    |
+    | The property fallback feature will return the translated value of
+    | the fallback locale if the property is empty for the selected
+    | locale. Note that 'use_fallback' must be enabled.
+    |
+     */
+    'use_property_fallback' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Translation Suffix
+    |--------------------------------------------------------------------------
+    |
+    | Defines the default 'Translation' class suffix. For example, if
+    | you want to use CountryTrans instead of CountryTranslation
+    | application, set this to 'Trans'.
+    |
+    */
+    'translation_suffix' => 'Translation',
+    /*
+    |--------------------------------------------------------------------------
+    | Locale key
+    |--------------------------------------------------------------------------
+    |
+    | Defines the 'locale' field name, which is used by the
+    | translation model.
+    |
+    */
+    'locale_key' => 'locale',
+    /*
+    |--------------------------------------------------------------------------
+    | Always load translations when converting to array
+    |--------------------------------------------------------------------------
+    | Setting this to false will have a performance improvement but will
+    | not return the translations when using toArray(), unless the
+    | translations relationship is already loaded.
+    |
+     */
+    'to_array_always_loads_translations' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -176,6 +221,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        Dimsav\Translatable\TranslatableServiceProvider::class,
 
     ],
 

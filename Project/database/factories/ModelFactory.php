@@ -12,6 +12,7 @@ use App\GroupFaq;
 use App\Language;
 use App\CheckList;
 use App\DocumentItem;
+use App\LanguageMeta;
 use App\Organization;
 use Illuminate\Support\Facades\DB;
 
@@ -55,6 +56,7 @@ $factory->define(Organization::class, function (Faker\Generator $faker){
 		'phone' => $faker->tollFreePhoneNumber,
 		'location' => $faker->streetAddress,
 		'representative' => $faker->userName,
+		'typeorganization' => $faker->userName,
 	];
 });
 $factory->define(User::class, function (Faker\Generator $faker) {

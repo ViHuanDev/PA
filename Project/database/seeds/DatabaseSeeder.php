@@ -13,6 +13,7 @@ use App\Language;
 use App\CheckList;
 use Faker\Factory;
 use App\DocumentItem;
+use App\LanguageMeta;
 use App\Organization;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
         DocumentItem::truncate();
         Document::truncate();
         Language::truncate();
+        LanguageMeta::truncate();
         DB::table('group_menu')->truncate();
         DB::table('checklist_user')->truncate();
         DB::table('documentitem_faq')->truncate();
@@ -57,9 +59,27 @@ class DatabaseSeeder extends Seeder
         $checklistQuantity = 50;
         $commentQuantity = 1000;
         $languageQuantity = 2;
+        $languageMetaQuantity = 70;
+        $menu = new Menu;
+        $group = new Group;
 
         factory(Language::class, $languageQuantity)->create();
-        factory(Menu::class, $menuQuantity)->create();
+        factory(Menu::class, $menuQuantity)->create()->each(function($menu){
+            $languagemeta = new LanguageMeta;
+            $languagemeta->content_id = $menu->id;
+            if($menu->id % 2 ==0){
+                $indexcontent_id = 0;
+                $language_id= 1;
+            }
+            else{
+                $indexcontent_id = $menu->id+1;
+                $language_id= 2;
+            }
+            $languagemeta->language_id = $language_id;
+            $languagemeta->indexcontent_id = $indexcontent_id;
+            $languagemeta->reference = $menu->getTable();
+            $languagemeta->save();
+        });
         factory(Group::class, $groupQuantity)->create()->each(function($group){
             $menu = Menu::all();
             foreach ($menu as $key => $m) {
@@ -68,17 +88,90 @@ class DatabaseSeeder extends Seeder
                 $display = mt_rand(0, 1);
                 $group->menu()->attach($menu_id,['value'=>$value,'display'=>$display]);
             }
+            $languagemeta = new LanguageMeta;
+            $languagemeta->content_id = $group->id;
+            if($group->id % 2 ==0){
+                $indexcontent_id = 0;
+                $language_id= 1;
+            }
+            else{
+                $indexcontent_id = $group->id+1;
+                $language_id= 2;
+            }
+            $languagemeta->language_id = $language_id;
+            $languagemeta->indexcontent_id = $indexcontent_id;
+            $languagemeta->reference = $group->getTable();
+            $languagemeta->save();
         });
-        factory(Organization::class, $organizationQuantity)->create();
+        factory(Organization::class, $organizationQuantity)->create()->each(function($organization){
+            $languagemeta = new LanguageMeta;
+            $languagemeta->content_id = $organization->id;
+            if($organization->id % 2 ==0){
+                $indexcontent_id = 0;
+                $language_id= 1;
+            }
+            else{
+                $indexcontent_id = $organization->id+1;
+                $language_id= 2;
+            }
+            $languagemeta->language_id = $language_id;
+            $languagemeta->indexcontent_id = $indexcontent_id;
+            $languagemeta->reference = $organization->getTable();
+            $languagemeta->save();
+        });;
         factory(User::class, $usersQuantity)->create();
         factory(Status::class, $statusQuantity)->create();
-        factory(GroupFaq::class, $groupfaqQuantity)->create();
+        factory(GroupFaq::class, $groupfaqQuantity)->create()->each(function($groupfaq){
+            $languagemeta = new LanguageMeta;
+            $languagemeta->content_id = $groupfaq->id;
+            if($groupfaq->id % 2 ==0){
+                $indexcontent_id = 0;
+                $language_id= 1;
+            }
+            else{
+                $indexcontent_id = $groupfaq->id+1;
+                $language_id= 2;
+            }
+            $languagemeta->language_id = $language_id;
+            $languagemeta->indexcontent_id = $indexcontent_id;
+            $languagemeta->reference = $groupfaq->getTable();
+            $languagemeta->save();
+        });
         factory(Document::class, $documentQuantity)->create();
-        factory(DocumentItem::class, $documentitemQuantity)->create();
+        factory(DocumentItem::class, $documentitemQuantity)->create()->each(function($documentitem){
+            $languagemeta = new LanguageMeta;
+            $languagemeta->content_id = $documentitem->id;
+            if($documentitem->id % 2 ==0){
+                $indexcontent_id = 0;
+                $language_id= 1;
+            }
+            else{
+                $indexcontent_id = $documentitem->id+1;
+                $language_id= 2;
+            }
+            $languagemeta->language_id = $language_id;
+            $languagemeta->indexcontent_id = $indexcontent_id;
+            $languagemeta->reference = $documentitem->getTable();
+            $languagemeta->save();
+        });
         factory(Faq::class, $faqQuantity)->create()->each(
             function($faq){
                 $documentitem = DocumentItem::all()->random()->pluck('id');
                 $faq->documentitem()->attach($documentitem);
+                $languagemeta = new LanguageMeta;
+                $languagemeta->content_id = $faq->id;
+                if($faq->id % 2 ==0){
+                    $indexcontent_id = 0;
+                    $language_id= 1;
+                }
+                else{
+                    $indexcontent_id = $faq->id+1;
+                    $language_id= 2;
+                }
+                $languagemeta->language_id = $language_id;
+                $languagemeta->indexcontent_id = $indexcontent_id;
+                $languagemeta->reference = $faq->getTable();
+                $languagemeta->save();
             }
             );
         factory(CheckList::class, $checklistQuantity)->create()->each(
@@ -88,6 +181,20 @@ class DatabaseSeeder extends Seeder
                 $checklist->faq()->attach($faq,['status_id'=>$status]);
                 $users = User::all()->random()->pluck('id');
                 $checklist->user()->attach($users,['status'=>Action::APPROVAL]);
+                $languagemeta = new LanguageMeta;
+                $languagemeta->content_id = $checklist->id;
+                if($checklist->id % 2 ==0){
+                    $indexcontent_id = 0;
+                    $language_id= 1;
+                }
+                else{
+                    $indexcontent_id = $checklist->id+1;
+                    $language_id= 2;
+                }
+                $languagemeta->language_id = $language_id;
+                $languagemeta->indexcontent_id = $indexcontent_id;
+                $languagemeta->reference = $checklist->getTable();
+                $languagemeta->save();
             }
             );
         factory(Comment::class, $commentQuantity)->create();

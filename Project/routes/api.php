@@ -21,14 +21,16 @@ Route::resource('menus','Menu\MenuController',['except' => ['create','edit']]);
  * Groups Duy-11/9
  */
 Route::resource('groups','Group\GroupController',['except' => ['create','edit']]);
+
 /**
  * Document Tuan Anh-12/9
  */
-Route::middleware('jwt.auth')->resource('documents','Document\DocumentController',['except' => ['create','edit']]);
+Route::resource('documents', 'Document\DocumentController',['except' => ['create','edit']]);
 /**
  * DocumentItem Tuan Anh-12/9
  */
 Route::resource('documentitems', 'DocumentItem\DocumentItemController',['except' => ['create','edit']]);
+
 /**
  * Faq Tuan Anh-12/9
  */
@@ -55,16 +57,22 @@ Route::resource('comments', 'Comment\CommentController',['except' => ['create','
 Route::resource('users','User\UserController',['except' => ['create','edit']]);
 Route::post('users/signin','User\UserController@signIn');
 /**
- * Organization Duy-11/9
+ * Organization Duy-12/9
  */
 Route::resource('organizations','Organization\OrganizationController',['except' => ['create','edit']]);
 
 /**
- * Organization Duy-11/9
+ * language Duy-12/9
  */
 Route::resource('languages','Language\LanguageController',['except' => ['create','edit']]);
 
 /**
- * Language Switcher Duy-11/9
+ * Language Switcher Duy-13/9
  */
-Route::resource('language.switcher','Language\LanguageSwitcherController',['only' => ['index','edit']]);
+Route::resource('language/switcher','Language\LanguageSwitcherController',['only' => ['store','index']]);
+
+/**
+ * Language Switcher Duy-13/9
+ */
+Route::resource('menu/group','Menu_Group\Menu_GroupController',['only' => ['store','index']]);
+Route::get('menu/group/{user}','Menu_Group\Menu_GroupController@create');

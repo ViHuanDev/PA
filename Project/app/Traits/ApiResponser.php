@@ -20,7 +20,7 @@ trait ApiResponser
 		return response()->json($data, $code);
 	}
 
-	protected function showAll(Collection $collection, $code = 200)
+	protected function showAll($collection, $code = 200)
 	{
 		return $this->successResponse(['data' => $collection], $code);
 	}

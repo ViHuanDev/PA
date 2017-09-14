@@ -25,8 +25,8 @@ class CreateMenuRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2|max:50|unique:menus,name',
-            'parent_id' => 'required|numeric|exists:menus,id',
-            'nameroute' => 'required|min:2|max:50',
+            'parent_id' => 'required|numeric',
+            'nameroute' => 'required|max:50',
             'order' => 'required|numeric',
         ];
     }

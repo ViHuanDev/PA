@@ -19,7 +19,7 @@ class UserController extends ApiController
      */
     public function signIn(Request $req)
     {
-        dd($req->all());
+        
     }
     public function index()
     {

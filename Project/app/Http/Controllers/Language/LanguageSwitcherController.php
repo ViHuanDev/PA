@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Language;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\Session;
 
 class LanguageSwitcherController extends ApiController
 {
+    public function __construct(){
+        $this->middleware('LanguageSwitcher');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +21,7 @@ class LanguageSwitcherController extends ApiController
      */
     public function index()
     {
-        $language = DB::table('languages')->get();
-        return response()->json($language);
+        return Session::get('app.locale');
     }
 
     /**
@@ -35,9 +40,16 @@ class LanguageSwitcherController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        if(!\Session::has('locale'))
+        {
+            \Session::put('locale', Input::get('locale'));
+        }else 
+        {
+            \Session::put('locale', Input::get('locale'));
+        }
+        return Input::get('locale');
     }
 
     /**

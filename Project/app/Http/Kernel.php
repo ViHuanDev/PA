@@ -19,6 +19,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\Cors::class
+        \App\Http\Middleware\LanguageSwitcher::class,
+        \Illuminate\Session\Middleware\StartSession::class,
     ];
 
     /**
@@ -59,5 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+        'LanguageSwitcher' => \App\Http\Middleware\LanguageSwitcher::class,
     ];
 }
