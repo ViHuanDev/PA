@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('organization_id')->unsigned();
             $table->integer('group_id')->unsigned();
             $table->string('status')->default(User::PENDING);
+            $table->string('languagedefault')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();//deleted_at
