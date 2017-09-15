@@ -9,6 +9,6 @@ class Action extends Model
 	const CREATE = 'create';
     const PENDING = 'pending';
     const APPROVAL = 'approval';
-    const REFUSE = 'resfuse';
+    const REFUSE = 'refuse';
     const FIXING = 'fixing';
 }
