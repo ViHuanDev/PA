@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
-
+use Tymon\JWTAuth\Facades\JWTAuth;;
+use Illuminate\Support\Facades\Auth;;
 class UserController extends ApiController
 {
     /**
@@ -17,16 +18,41 @@ class UserController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function signIn(Request $req)
+    public function signIn(Request $request)
     {
-        
+       $credentials = $request->all('email', 'password');
+       $token = null;
+       try {
+        if (!$token = JWTAuth::attempt($credentials)) {
+            return response()->json([
+                'response' => 'error',
+                'message' => 'invalid_email_or_password',
+            ]);
+        }
+    } catch (JWTAuthException $e) {
+        return response()->json([
+            'response' => 'error',
+            'message' => 'failed_to_create_token',
+        ]);
     }
-    public function index()
-    {
-        $users = User::all();
+    return response()->json([
+        'response' => 'success',
+        'result' => [
+            'token' => $token,
+        ],
+        'user'=>JWTAuth::toUser($token)
+    ]);
+}
+public function getAuthUser(Request $request){
+    $user = JWTAuth::toUser($request->token);        
+    return response()->json($user);
+}
+public function index()
+{
+    $users = User::all();
 
-        return $this->showAll($users);
-    }
+    return $this->showAll($users);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -93,19 +119,19 @@ class UserController extends ApiController
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-       $user->fullname = $request->fullname;
-       $user->email = $request->email;
-       $user->phone = $request->phone;
-       $user->extendinfo = $request->extendinfo;
-       $user->position = $request->position;
-       $user->organization_id = $request->organization_id;
-       $user->group_id = $request->group_id;
-       $user->status = $request->status;
+     $user->fullname = $request->fullname;
+     $user->email = $request->email;
+     $user->phone = $request->phone;
+     $user->extendinfo = $request->extendinfo;
+     $user->position = $request->position;
+     $user->organization_id = $request->organization_id;
+     $user->group_id = $request->group_id;
+     $user->status = $request->status;
 
-       $user->save();
+     $user->save();
 
-       return $this->showOne($user, 200);
-    }
+     return $this->showOne($user, 200);
+ }
 
     /**
      * Remove the specified resource from storage.

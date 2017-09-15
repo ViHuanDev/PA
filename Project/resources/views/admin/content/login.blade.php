@@ -1,95 +1,138 @@
-<!DOCTYPE html>
-<html>
-<style>
-form {
-    border: 3px solid #f1f1f1;
-}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Milestone">
 
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Milestone">
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
+    <meta name="theme-color" content="#4C7FF0">
+    
+    <title>Milestone - Bootstrap 4 Dashboard Template</title>
 
-button:hover {
-    opacity: 0.8;
-}
+    <!-- page stylesheets -->
+    <!-- end page stylesheets -->
 
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
+    <!-- build:css({.tmp,app}) styles/app.min.css -->
+    <link rel="stylesheet" href="{{ asset('template/vendor/bootstrap/dist/css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('template/vendor/pace/themes/blue/pace-theme-minimal.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('template/vendor/font-awesome/css/font-awesome.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('template/vendor/animate.css/animate.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('template/styles/app.css') }}" id="load_styles_before"/>
+    <link rel="stylesheet" href="{{ asset('template/template/tyles/app.skins.css') }}"/>
+    <script src="{{asset('js/flugin/angular/angular.min.js')}}"></script> 
+    <script src="{{ asset('js/controllers/admin/login.js') }}"></script>
+    <!-- endbuild -->
+    <style type="text/css">
+    #loading{
+      background: url({{ asset('img/loading.gif') }}) center no-repeat #fff;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999
     }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-</style>
-<body>
+  </style>
+  </head>
+  <body>
+    <div class="loading" id="loading"></div>
+    <div class="app no-padding no-footer layout-static" ng-app="pa-login" ng-controller="login">
+      <div class="session-panel">
+        <div class="session">
+          <div class="session-content">
+            <div class="card card-block form-layout">
+              <form role="form" id="validate" ng-submit="login(email,password)">
+                <div class="text-xs-center m-b-3">
+                  <img src="template/images/logo-icon.png" height="80" alt="" class="m-b-1"/>
+                  <h5>
+                    Welcome back!
+                  </h5>
+                  <p class="">
+                    Sign in with your app id to continue.
+                  </p>
+                  @verbatim
+                  <p class="" style="color: red">
+                    {{error}}
+                  </p>
+                  @endverbatim
+                </div>
+                <fieldset class="form-group">
+                  <label for="username">
+                    Enter your email
+                  </label>
+                  <input ng-model='email' type="email" class="form-control form-control-lg" name="email" placeholder="email" required/>
+                </fieldset>
+                <fieldset class="form-group">
+                  <label for="password">
+                    Enter your password
+                  </label>
+                  <input ng-model='password' type="password" class="form-control form-control-lg" id="password" placeholder="********" required name="password" />
+                </fieldset>
+                <label class="custom-control custom-checkbox m-b-1">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Stay logged in</span>
+                </label>
+                <button class="btn btn-primary btn-block btn-lg" type="submit">
+                  Login
+                </button>
+              </form>
+              <a href="extra-forgot.html" class="">
+                Forgot password?
+              </a>
+            </div>
+          </div>
+        </div>
 
-<h2>Login Form</h2>
+      </div>
+    </div>
+    <!-- build:js({.tmp,app}) scripts/app.min.js -->
+    <script src="{{ asset('template/vendor/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('template/vendor/pace/pace.js') }}"></script>
+    <script src="{{ asset('template/vendor/tether/dist/js/tether.js') }}"></script>
+    <script src="{{ asset('template/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('template/vendor/fastclick/lib/fastclick.js') }}"></script>
+    <script src="{{ asset('template/scripts/constants.js') }}"></script>
+    <script src="{{ asset('template/scripts/main.js') }}"></script>
+    <!-- endbuild -->
 
-<form action="{{route('apilogin')}}" method="post">
-  <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-  </div>
-        {{csrf_field()}}
+    <!-- page scripts -->
+    <script src="{{ asset('template/vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <!-- end page scripts -->
 
-  <div class="container">
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="email" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-        
-    <button type="submit">Login</button>
-    <input type="checkbox" checked="checked"> Remember me
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
-
-</body>
+    <!-- initialize page scripts -->
+    <script type="text/javascript">
+      $('#validate').validate({
+        rules:({
+          email:({
+            required:true,
+            email:true,
+          }),
+          password:({
+            required:true
+          })
+        }),
+        messages:({
+          email:({
+            email:'Sai định dạng email',
+            required:'Email không được để trông'
+          }),
+          password:({
+            required:"Mật khẩu không được để trống",
+          })
+        })
+      });
+    </script>
+    <!-- end initialize page scripts -->
+    
+  </body>
 </html>

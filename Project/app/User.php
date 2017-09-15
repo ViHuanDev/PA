@@ -1,19 +1,18 @@
 <?php
 
 namespace App;
-
 use App\Group;
 use App\Comment;
 use App\Log_User;
 use App\CheckList;
 use App\Organization;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-class User extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class User extends Authenticatable
 {
     use SoftDeletes;
-
+    use Notifiable;
     const PENDING = 'pending';
     const APPROVAL = 'approval';
     const REFUSE = 'resfuse';
@@ -22,7 +21,9 @@ class User extends Model
     protected $dates = ['deleted_at'];
     protected $table = 'users';
     protected $guarded = array();
-    
+     protected $hidden = [
+        'password', 'remember_token',
+    ];
     public function groupuser(){
     	return $this->belongsTo(Group::class);
     }
