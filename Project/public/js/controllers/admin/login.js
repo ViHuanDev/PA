@@ -3,8 +3,14 @@ app.run(function ($http) {
 	if(sessionStorage.token!=undefined&&sessionStorage.token!=null)
   {
     $http.get('/api/getuser?token='+sessionStorage.token).then(function(res){
-      console.log(res.data);
-        //window.location.href='/admin';
+      if(res.data.languagedefault!=null)
+      {
+        window.location.href='/admin';
+      }
+      else
+      {
+        window.location.href='/admin/choicelanguage';
+      }
     }, function(err){
     });
   }
@@ -16,8 +22,14 @@ app.controller('login', function($scope,$http){
       if(res.data.response==='success')
       {
         sessionStorage.token=res.data.result.token;
-        console.log(res.data);
-        //window.location.href='/admin';
+        if(res.data.user.languagedefault==null)
+        {
+          window.location.href='/admin/choicelanguage';
+        }
+        else
+        {
+          window.location.href='/admin';
+        }
       }
       else
       {

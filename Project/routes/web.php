@@ -17,6 +17,9 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('/login', function () {
 		return view('admin.content.login');
 	});
+	Route::get('/choicelanguage', function () {
+		return view('admin.language.index');
+	});
 });
 
 

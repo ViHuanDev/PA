@@ -3,7 +3,15 @@ main.run(function($http,$rootScope){
 	if(sessionStorage.token!=undefined&&sessionStorage.token!=null)
 	{
 		$http.get('/api/getuser?token='+sessionStorage.token).then(function(res){
-			$rootScope.user=res.data;
+			if(res.data.languagedefault!=null)
+			{
+				$rootScope.user=res.data;
+			}
+			else
+			{
+				window.location.href='/admin/choicelanguage';
+			}
+			
 		}, function(err){
 			window.location.href='/admin/login';
 		});

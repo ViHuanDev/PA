@@ -52,7 +52,7 @@
             <div class="card card-block form-layout">
               <form role="form" id="validate" ng-submit="login(email,password)">
                 <div class="text-xs-center m-b-3">
-                  <img src="template/images/logo-icon.png" height="80" alt="" class="m-b-1"/>
+                  <img src="{{ asset('template/images/logo-icon.png') }}" height="80" alt="" class="m-b-1"/>
                   <h5>
                     Welcome back!
                   </h5>
