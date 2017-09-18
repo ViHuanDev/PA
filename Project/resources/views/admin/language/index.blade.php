@@ -33,7 +33,7 @@
     <!-- endbuild -->
     <style type="text/css">
     #loading{
-      background: url({{ asset('img/loading.gif') }}) center no-repeat #fff;
+      background:center no-repeat #fff;
       position: fixed;
       left: 0px;
       top: 0px;
@@ -59,11 +59,13 @@
                   </h5>
                   @endverbatim
                   <p class="">
-                    <span>Language: </span>
-                    <span>
-                      <img src="{{asset('img/flags/vietname.png') }}"/>
-                    </span>
+                    <span>chọn ngôn ngữ: </span>  
                   </p>
+                  <div class="col-md-12">
+                    <span ng-repeat="language in listLanguage">
+                      <img src="{{ asset('img/flags/vietnam.png') }}" class="img-responsive">
+                    </span>
+                  </div>
                 </div>
                 <button class="btn btn-primary btn-block btn-lg" type="submit">
                   Next
