@@ -34,7 +34,7 @@ Route::resource('documentitems', 'DocumentItem\DocumentItemController',['except'
 /**
  * Faq Tuan Anh-12/9
  */
-Route::resource('faqs', 'Faq\FaqController',['except' => ['create','edit']]);\
+Route::resource('faqs', 'Faq\FaqController',['except' => ['create','edit']]);
 /**
  * GroupFaq Tuan Anh-12/9
  */
@@ -74,7 +74,7 @@ Route::resource('languages','Language\LanguageController',['except' => ['create'
 Route::resource('language/switcher','Language\LanguageSwitcherController',['only' => ['store','index']]);
 
 /**
- * Language Switcher Duy-13/9
+ * Menu group Duy-13/9
  */
 Route::resource('menu/group','Menu_Group\Menu_GroupController',['only' => ['store','index']]);
 Route::get('menu/group/{user}','Menu_Group\Menu_GroupController@create');

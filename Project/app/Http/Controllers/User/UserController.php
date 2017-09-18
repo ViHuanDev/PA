@@ -4,13 +4,15 @@ namespace App\Http\Controllers\User;
 
 use App\User;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
-use Tymon\JWTAuth\Facades\JWTAuth;;
-use Illuminate\Support\Facades\Auth;;
+use App\Http\Requests\User\SigninRequest;
+
 class UserController extends ApiController
 {
     /**
@@ -18,7 +20,7 @@ class UserController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function signIn(Request $request)
+    public function signIn(SigninRequest $request)
     {
        $credentials = $request->all('email', 'password');
        $token = null;

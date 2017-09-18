@@ -18,7 +18,7 @@ class GroupController extends ApiController
      */
     public function index()
     {
-        $groups = Group::paginate(5);
+        $groups = Group::paginate(10);
 
         return $this->showAll($groups);
     }
