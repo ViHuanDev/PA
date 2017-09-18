@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendor/font-awesome/css/font-awesome.css') }}"/>
     <link rel="stylesheet" href="{{ asset('template/vendor/animate.css/animate.css') }}"/>
     <link rel="stylesheet" href="{{ asset('template/styles/app.css') }}" id="load_styles_before"/>
-    <link rel="stylesheet" href="{{ asset('template/template/tyles/app.skins.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('template/styles/app.skins.css') }}"/>
     <script src="{{asset('js/flugin/angular/angular.min.js')}}"></script> 
     <script src="{{ asset('js/controllers/admin/login.js') }}"></script>
     <!-- endbuild -->

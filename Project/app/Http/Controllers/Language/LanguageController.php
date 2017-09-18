@@ -41,10 +41,20 @@ class LanguageController extends ApiController
      */
     public function store(CreateLanguageRequest $request)
     {
+        dd($request);
         $data = $request->all();
         $data['code'] = $request->code;
         $data['name'] = $request->name;
+        if($request->hasFile('imagelanguage'))
+        {
+            $file=$request->file('imagelanguage');
+            $filename = $file->getClientOriginalName();
+        }   
+        else {
+            $filename = "";
 
+        }
+        $data['imagelanguage'] = $request->imagelanguage;
         $language = Language::create($data);
 
         return $this->showOne($language);
@@ -83,7 +93,8 @@ class LanguageController extends ApiController
     {
         $language->name = $request->name;
         $language->code = $request->code;
-
+        $language->imagelanguage = $request->imagelanguage;
+        
         $language->save();
 
         return $this->showOne($language);
