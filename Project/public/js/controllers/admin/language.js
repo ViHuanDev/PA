@@ -14,9 +14,14 @@ app.run(function($http,$rootScope){
 		window.location.href='/admin/login';
 	}
 });
-app.controller('language', function(){
-	
+app.controller('language', function($scope,$http){
+	$http.get('/api/languages?token='+sessionStorage.token).then(function(res){
+		$scope.listLanguage=res.data.data;
+	}, function(err){
+		console.log(err);
+	});
 })
 angular.element(document).ready(function(){
   $('.loading').fadeOut('slow');
 });
+

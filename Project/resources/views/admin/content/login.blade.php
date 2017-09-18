@@ -33,7 +33,7 @@
     <!-- endbuild -->
     <style type="text/css">
     #loading{
-      background: url({{ asset('img/loading.gif') }}) center no-repeat #fff;
+      background:center no-repeat #fff;
       position: fixed;
       left: 0px;
       top: 0px;
