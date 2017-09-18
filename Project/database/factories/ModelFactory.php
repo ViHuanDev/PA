@@ -66,7 +66,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     	'fullname' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('123456'),
-        'status' => $status = $faker->randomElement([User::PENDING, USER::APPROVAL,User::REFUSE, USER::BAN]),
+        'status' => $status = $faker->randomElement([User::PENDING, USER::ACTIVATE,User::DEACTIVATE]),
        	'phone' => $faker->tollFreePhoneNumber,
        	'extendinfo' => $faker->realText($maxNbChars = 200, $indexSize = 2),
        	'position' => $faker->realText($maxNbChars = 200, $indexSize = 1),

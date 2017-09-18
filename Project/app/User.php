@@ -15,9 +15,8 @@ class User extends Model
     use SoftDeletes;
 
     const PENDING = 'pending';
-    const APPROVAL = 'approval';
-    const REFUSE = 'resfuse';
-    const BAN = 'ban';
+    const ACTIVATE = 'activate';
+    const DEACTIVATE = 'deactivate';
 
     protected $dates = ['deleted_at'];
     protected $table = 'users';
