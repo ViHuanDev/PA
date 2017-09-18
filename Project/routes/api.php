@@ -55,7 +55,9 @@ Route::resource('comments', 'Comment\CommentController',['except' => ['create','
  * Users Duy-11/9
  */
 Route::resource('users','User\UserController',['except' => ['create','edit']]);
+
 Route::post('users/signin','User\UserController@signIn');
+Route::get('getuser','User\UserController@getAuthUser');
 /**
  * Organization Duy-12/9
  */
