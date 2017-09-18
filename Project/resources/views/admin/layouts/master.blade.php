@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="{{ asset('template/styles/app.css')}}"/>
   <link rel="stylesheet" href="{{ asset('template/styles/app.skins.css')}}"/>
   <link rel="stylesheet" href="{{ asset('template/styles/style.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('template/vendor/datatables/media/css/dataTables.bootstrap4.css') }}">
   <script src="{{ asset('js/flugin/angular/angular.min.js')}}"></script>
   <script src="{{ asset('js/controllers/admin/header.js') }}"></script> 
   <script src="{{ asset('js/controllers/admin/app.js') }}"></script>
@@ -64,23 +65,25 @@
         <!-- /toggle offscreen menu -->
         <!-- logo -->
         <a class="brand-logo">
-          <img class="expanding-hidden" src="template/images/logo.png" alt=""/>
+          <img class="expanding-hidden" src="{{ asset('template/images/logo.png') }}" alt=""/>
         </a>
         <!-- /logo -->
       </div>
-      @verbatim
+     
       <div class="nav-profile dropdown">
         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
           <div class="user-image">
-            <img src="template/images/avatar.jpg" class="avatar img-circle" alt="user" title="user"/>
-          </div>
+            <img src="{{ asset('template/images/avatar.jpg') }}" class="avatar img-circle" alt="user" title="user"/>
+          </div> 
+          @verbatim
           <div class="user-info expanding-hidden">
             {{user.fullname}}
             <small class="bold">Administrator</small>
-          </div>
+          </div> 
+          @endverbatim
         </a>
       </div>
-      @endverbatim
+     
             @include('admin.layouts.menu')
           </div>
         <div class="main-panel">
@@ -117,7 +120,8 @@
       <script src="{{ asset('template/vendor/fastclick/lib/fastclick.js') }}"></script>
       <script src="{{ asset('template/scripts/constants.js') }}"></script>
       <script src="{{ asset('template/scripts/main.js') }}"></script>
-
+       <script src="{{ asset('template/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
+      <script src="{{ asset('template/vendor/datatables/media/js/dataTables.bootstrap4.js') }}"></script>
       <!-- endbuild -->
 
       <!-- page scripts -->
@@ -136,5 +140,8 @@
       <script src="{{ asset('template/scripts/dashboard/dashboard.js') }}"></script>
       <!-- end initialize page scripts -->
 
+      <script type="text/javascript">
+      $('.datatable').DataTable();
+    </script>
     </body>
     </html>

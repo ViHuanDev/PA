@@ -49,6 +49,13 @@ public function getAuthUser(Request $request){
     $user = JWTAuth::toUser($request->token);        
     return response()->json($user);
 }
+public function updateLanguage(Request $request)
+{ 
+    $user = JWTAuth::toUser($request->token);
+    $user->languagedefault=$request->languagedefault;
+    $user->save();
+    return response()->json($user);
+}
 public function index()
 {
     $users = User::all();

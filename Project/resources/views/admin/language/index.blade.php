@@ -57,17 +57,19 @@
                   <h5>
                     Welcome {{user.fullname}}
                   </h5>
-                  @endverbatim
+                  <p><h6>Select your language default</h6></p>
+                  <p><h6>Chọn ngôn ngữ mặc định của bạn</h6></p>
                   <p class="">
-                    <span>chọn ngôn ngữ: </span>  
+                    <span>Language: {{languageSelect}}</span>  
                   </p>
                   <div class="col-md-12">
                     <span ng-repeat="language in listLanguage">
-                      <img src="{{ asset('img/flags/vietnam.png') }}" class="img-responsive">
+                      <img src="/{{language.imagelanguage}}" class="img-responsive" ng-click="choice(language.id,language.name)">
                     </span>
                   </div>
+                  @endverbatim
                 </div>
-                <button class="btn btn-primary btn-block btn-lg" type="submit">
+                <button ng-disabled="languageSelect_id==''" ng-click="submit()" class="btn btn-primary btn-block btn-lg" type="submit">
                   Next
                 </button>
               </form>

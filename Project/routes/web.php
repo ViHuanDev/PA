@@ -20,6 +20,9 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('/choicelanguage', function () {
 		return view('admin.language.index');
 	});
+	Route::get('documents', function() {
+	    return view('admin.document.index');
+	});
 });
 
 

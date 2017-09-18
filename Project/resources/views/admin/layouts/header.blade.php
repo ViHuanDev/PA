@@ -8,7 +8,7 @@
       <!-- /toggle offscreen menu -->
       <!-- logo -->
       <a class="brand-logo hidden-xs-down">
-        <img src="template/images/logo_white.png" alt="logo"/>
+        <img src="{{ asset('emplate/images/logo_white.png') }}t" alt="logo"/>
       </a>
       <!-- /logo -->
     </div>
@@ -99,25 +99,25 @@
               </div>
               <div class="nav-item nav-link dropdown">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="template/images/us.png">
+                  <img src="{{ asset('template/images/us.png') }}">
                   <span>English</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="javascript:;"><img src="template/images/us.png"><span>English</span></a>
-                  <a class="dropdown-item" href="javascript:;"><img src="template/images/vn.png"><span>Tiếng Việt</span></a>
+                  <a class="dropdown-item" href="javascript:;"><img src="{{ asset('template/images/us.png') }}"><span>English</span></a>
+                  <a class="dropdown-item" href="javascript:;"><img src="{{ asset('template/images/vn.png') }}"><span>Tiếng Việt</span></a>
                 </div>
               </div>
-              @verbatim
+              
               <div class="nav-item nav-link dropdown nav-end">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="template/images/face1.jpg" class="image-avata" />
-                  <span>{{user.fullname}}</span>
+                  <img src="{{ asset('template/images/face1.jpg') }}" class="image-avata" />
+                  @verbatim<span>{{user.fullname}}</span>@endverbatim
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-end">
                   <a class="dropdown-item" href=""><i class="material-icons">person</i><span>Profile</span></a>
                   <a class="dropdown-item" href="" ng-click="logout()"><i class="material-icons">lock_outline</i><span>Logout</span></a>
                 </div>
               </div>
-              @endverbatim
+              
             </div>
           </nav>

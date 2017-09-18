@@ -58,6 +58,7 @@ Route::resource('users','User\UserController',['except' => ['create','edit']]);
 
 Route::post('users/signin','User\UserController@signIn');
 Route::get('getuser','User\UserController@getAuthUser');
+Route::put('users/language/update','User\UserController@updateLanguage');
 /**
  * Organization Duy-12/9
  */
